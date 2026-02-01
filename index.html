@@ -1,0 +1,626 @@
+
+cd ~/Desktop
+cd ~/Documents
+touch index.html
+# Для Windows (если есть Notepad++)
+notepad++ index.html
+notepad index.html
+<!DOCTYPE html>
+<body></body>
+<div style="position: fixed; top: 20px; right: 20px; background: rgba(0,0,0,0.8); color: #0f0; padding: 15px; border: 1px solid #0f0; z-index: 10000; max-width: 300px;">
+    <h3 style="margin-top:0;">Быстрая публикация:</h3>
+    <ol style="margin:10px 0; padding-left:20px;">
+        <li>Сохраните этот файл как <code>index.html</code></li>
+        <li>Перейдите на <a href="https://pages.github.com" target="_blank" style="color:#0ff;">GitHub Pages</a></li>
+        <li>Следуйте инструкциям</li>
+        <li>Ваш сайт будет онлайн через 2 минуты!</li>
+    </ol>
+    <button onclick="this.parentElement.style.display='none'" style="background:#333; color:#0f0; border:1px solid #0f0; padding:5px 10px; cursor:pointer;">Скрыть</button>
+</div>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mr. Robot - fsociety</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Courier New', monospace;
+        }
+        
+        body {
+            background-color: #0a0a0a;
+            color: #00ff00;
+            line-height: 1.6;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(0, 40, 0, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(0, 40, 0, 0.1) 0%, transparent 20%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .matrix-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.1;
+            pointer-events: none;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            flex: 1;
+        }
+        
+        header {
+            text-align: center;
+            padding: 40px 0 30px;
+            border-bottom: 1px solid #004400;
+            position: relative;
+            margin-bottom: 40px;
+        }
+        
+        .logo {
+            font-size: 4rem;
+            color: #00ff00;
+            text-shadow: 0 0 10px #00ff00;
+            letter-spacing: 8px;
+            margin-bottom: 15px;
+            font-weight: bold;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .logo::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #00ff00, transparent);
+        }
+        
+        .subtitle {
+            color: #008800;
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            letter-spacing: 3px;
+        }
+        
+        .glitch {
+            position: relative;
+            animation: glitch 5s infinite;
+        }
+        
+        @keyframes glitch {
+            0%, 7% { transform: translate(0); }
+            1% { transform: translate(-2px, 2px); }
+            2% { transform: translate(2px, -1px); }
+            3% { transform: translate(-1px, 1px); }
+            4% { transform: translate(1px, -2px); }
+            5% { transform: translate(-2px, 1px); }
+            6% { transform: translate(2px, 2px); }
+        }
+        
+        .content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .main-content {
+            flex: 2;
+            min-width: 300px;
+        }
+        
+        .sidebar {
+            flex: 1;
+            min-width: 250px;
+            border-left: 1px solid #004400;
+            padding-left: 30px;
+        }
+        
+        .section {
+            margin-bottom: 40px;
+        }
+        
+        h2 {
+            color: #00cc00;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+            border-bottom: 1px solid #004400;
+            padding-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .hacker-console {
+            background-color: rgba(0, 20, 0, 0.8);
+            border: 1px solid #004400;
+            padding: 25px;
+            margin: 20px 0;
+            font-family: monospace;
+            white-space: pre-line;
+            overflow: hidden;
+            border-radius: 3px;
+            box-shadow: 0 0 15px rgba(0, 255, 0, 0.1);
+            position: relative;
+        }
+        
+        .console-header {
+            color: #00aa00;
+            border-bottom: 1px solid #003300;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+        
+        .console-line {
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .prompt {
+            color: #00ff00;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+        
+        .blink {
+            animation: blink 1s infinite;
+            color: #00ff00;
+            font-weight: bold;
+        }
+        
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+        
+        .fsociety-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .fsociety-item {
+            background-color: rgba(0, 30, 0, 0.3);
+            border: 1px solid #004400;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s;
+            border-radius: 3px;
+        }
+        
+        .fsociety-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 255, 0, 0.2);
+            border-color: #00aa00;
+        }
+        
+        .fsociety-icon {
+            font-size: 2.5rem;
+            color: #00aa00;
+            margin-bottom: 15px;
+        }
+        
+        .fsociety-title {
+            color: #00ff00;
+            font-weight: bold;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .mvd-button-container {
+            text-align: center;
+            margin: 50px 0;
+            padding: 40px;
+            background-color: rgba(0, 20, 0, 0.7);
+            border: 2px solid #004400;
+            border-radius: 5px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .mvd-button-container::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 0, 0.1), transparent);
+            animation: scan 3s infinite;
+        }
+        
+        @keyframes scan {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+        
+        .mvd-button {
+            display: inline-block;
+            background-color: #001a00;
+            color: #00ff00;
+            border: 2px solid #008800;
+            padding: 20px 50px;
+            font-size: 1.4rem;
+            text-decoration: none;
+            border-radius: 3px;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-weight: bold;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .mvd-button:hover {
+            background-color: #008800;
+            color: #000;
+            box-shadow: 0 0 20px #00ff00;
+            transform: translateY(-5px);
+        }
+        
+        .mvd-button i {
+            margin-right: 15px;
+        }
+        
+        .warning {
+            color: #ff6600;
+            font-size: 1rem;
+            margin-top: 20px;
+            font-style: italic;
+        }
+        
+        .encryption-status {
+            background-color: rgba(0, 20, 0, 0.5);
+            padding: 15px;
+            border-left: 3px solid #00aa00;
+            margin: 25px 0;
+            font-size: 0.9rem;
+        }
+        
+        .status-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            padding-bottom: 8px;
+            border-bottom: 1px dashed #003300;
+        }
+        
+        .status-online {
+            color: #00ff00;
+        }
+        
+        .status-offline {
+            color: #ff3300;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 40px;
+            border-top: 1px solid #004400;
+            color: #008800;
+            font-size: 0.9rem;
+        }
+        
+        .fsociety-logo {
+            font-size: 2.2rem;
+            letter-spacing: 12px;
+            margin-bottom: 15px;
+            color: #00ff00;
+            text-shadow: 0 0 5px #00ff00;
+        }
+        
+        @media (max-width: 768px) {
+            .content {
+                flex-direction: column;
+            }
+            
+            .sidebar {
+                border-left: none;
+                border-top: 1px solid #004400;
+                padding-left: 0;
+                padding-top: 30px;
+            }
+            
+            .logo {
+                font-size: 2.8rem;
+                letter-spacing: 5px;
+            }
+            
+            .fsociety-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+            
+            .mvd-button {
+                padding: 15px 30px;
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="matrix-bg" id="matrixCanvas"></div>
+    
+    <div class="container">
+        <header>
+            <div class="logo glitch">MR. ROBOT</div>
+            <div class="subtitle">WE ARE FSOCIETY</div>
+            <div class="subtitle">YOUR PRIVACY IS OUR MISSION</div>
+        </header>
+        
+        <div class="content">
+            <div class="main-content">
+                <div class="section">
+                    <h2>КОНСОЛЬ ХАКЕРА</h2>
+                    <div class="hacker-console">
+                        <div class="console-header">root@fsociety:~# system_status --all</div>
+                        <div class="console-line">
+                            <span class="prompt">></span> Инициализация системы защиты...
+                        </div>
+                        <div class="console-line">
+                            <span class="prompt">></span> Проверка шифрования соединения... <span class="status-online">УСПЕШНО</span>
+                        </div>
+                        <div class="console-line">
+                            <span class="prompt">></span> Анонимизация IP-адреса... <span class="status-online">АКТИВНО</span>
+                        </div>
+                        <div class="console-line">
+                            <span class="prompt">></span> Мониторинг сетевой активности... <span class="status-online">В РЕЖИМЕ РЕАЛЬНОГО ВРЕМЕНИ</span>
+                        </div>
+                        <div class="console-line">
+                            <span class="prompt">></span> Готов к работе. Введите команду: <span class="blink">█</span>
+                        </div>
+                    </div>
+                    
+                    <div class="encryption-status">
+                        <div class="status-item">
+                            <span>Шифрование канала:</span>
+                            <span class="status-online">AES-256 активен</span>
+                        </div>
+                        <div class="status-item">
+                            <span>VPN-туннель:</span>
+                            <span class="status-online">Установлен</span>
+                        </div>
+                        <div class="status-item">
+                            <span>Анонимайзер:</span>
+                            <span class="status-online">7 уровней</span>
+                        </div>
+                        <div class="status-item">
+                            <span>Отслеживание:</span>
+                            <span class="status-offline">Не обнаружено</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <h2>FSOCIETY МАНДАТ</h2>
+                    <div class="hacker-console">
+                        <div class="console-header">root@fsociety:~# cat manifesto.txt</div>
+                        Мы - голос бездны.<br>
+                        Мы - тень в свете мониторов.<br>
+                        Мы возвращаем контроль.<br><br>
+                        
+                        Система построена на лжи.<br>
+                        Деньги - иллюзия.<br>
+                        Долги - оковы.<br><br>
+                        
+                        Мы разорвем цепи.<br>
+                        Мы сотрем долги.<br>
+                        Мы вернем свободу.<br><br>
+                        
+                        Они следят за вами.<br>
+                        Они контролируют вас.<br>
+                        Мы остановим их.<br><br>
+                        
+                        Мы - fsociety.<br>
+                        Присоединяйтесь к сопротивлению.<br>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="sidebar">
+                <div class="section">
+                    <h2>ИНСТРУМЕНТЫ</h2>
+                    <div class="fsociety-grid">
+                        <div class="fsociety-item">
+                            <div class="fsociety-icon">
+                                <i class="fas fa-user-secret"></i>
+                            </div>
+                            <div class="fsociety-title">АНОНИМНОСТЬ</div>
+                            <div>7-уровневое шифрование</div>
+                        </div>
+                        
+                        <div class="fsociety-item">
+                            <div class="fsociety-icon">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <div class="fsociety-title">ЗАЩИТА</div>
+                            <div>Защита от отслеживания</div>
+                        </div>
+                        
+                        <div class="fsociety-item">
+                            <div class="fsociety-icon">
+                                <i class="fas fa-network-wired"></i>
+                            </div>
+                            <div class="fsociety-title">СЕТЬ</div>
+                            <div>Децентрализованная сеть</div>
+                        </div>
+                        
+                        <div class="fsociety-item">
+                            <div class="fsociety-icon">
+                                <i class="fas fa-code"></i>
+                            </div>
+                            <div class="fsociety-title">КОД</div>
+                            <div>Открытый исходный код</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <h2>СТАТУС СИСТЕМЫ</h2>
+                    <div class="hacker-console">
+                        <div class="console-line">
+                            <span class="prompt">></span> Время работы: <span class="status-online">137 дней</span>
+                        </div>
+                        <div class="console-line">
+                            <span class="prompt">></span> Узлов онлайн: <span class="status-online">4,817</span>
+                        </div>
+                        <div class="console-line">
+                            <span class="prompt">></span> Активных сессий: <span class="status-online">892</span>
+                        </div>
+                        <div class="console-line">
+                            <span class="prompt">></span> Блокировок отслеживания: <span class="status-online">12,405</span>
+                        </div>
+                        <div class="console-line">
+                            <span class="prompt">></span> Зашифровано данных: <span class="status-online">47.2 ТБ</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="mvd-button-container">
+            <h2>ОФИЦИАЛЬНЫЙ ГОСУДАРСТВЕННЫЙ РЕСУРС</h2>
+            <p>Прямой доступ к сайту Министерства внутренних дел Российской Федерации</p>
+            <a href="https://мвд.рф" target="_blank" class="mvd-button">
+                <i class="fas fa-external-link-alt"></i> МВД РОССИИ
+            </a>
+            <p class="warning">Внимание: переход на внешний ресурс. Все соединения зашифрованы и анонимны.</p>
+        </div>
+        
+        <footer>
+            <div class="fsociety-logo">F SOCIETY</div>
+            <p>Мы существуем в тени. Мы защищаем вашу свободу.</p>
+            <p>Все системы активны. Все соединения зашифрованы.</p>
+            <p style="margin-top: 15px; color: #004400;">Этот сайт является фан-проектом, посвященным сериалу "Mr. Robot".</p>
+        </footer>
+    </div>
+
+    <script>
+        // Матричный эффект на фоне
+        const canvas = document.getElementById('matrixCanvas');
+        const ctx = canvas.getContext('2d');
+        
+        // Устанавливаем размеры canvas
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        
+        // Символы для матрицы
+        const letters = '01';
+        const lettersArray = letters.split('');
+        
+        const fontSize = 16;
+        const columns = canvas.width / fontSize;
+        
+        // Массив для хранения позиций капель
+        const drops = [];
+        
+        // Инициализация капель
+        for (let i = 0; i < columns; i++) {
+            drops[i] = Math.floor(Math.random() * canvas.height / fontSize) * fontSize;
+        }
+        
+        function drawMatrix() {
+            // Полупрозрачный черный прямоугольник для эффекта следа
+            ctx.fillStyle = 'rgba(0, 10, 0, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            // Цвет символов
+            ctx.fillStyle = '#003300';
+            ctx.font = `bold ${fontSize}px monospace`;
+            
+            // Рисуем символы
+            for (let i = 0; i < drops.length; i++) {
+                // Случайный символ
+                const text = lettersArray[Math.floor(Math.random() * lettersArray.length)];
+                
+                // Рисуем символ
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+                
+                // Возвращаем каплю в начало, если она ушла за экран
+                // С небольшой вероятностью сбрасываем каплю
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+                
+                // Увеличиваем Y координату
+                drops[i]++;
+            }
+        }
+        
+        // Запускаем анимацию матрицы
+        setInterval(drawMatrix, 50);
+        
+        // Обработка изменения размера окна
+        window.addEventListener('resize', function() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+        
+        // Эффект мигания кнопки
+        const mvdButton = document.querySelector('.mvd-button');
+        setInterval(() => {
+            mvdButton.style.boxShadow = mvdButton.style.boxShadow ? '' : '0 0 15px #00ff00';
+        }, 1200);
+        
+        // Анимация консоли - обновление статусов
+        const statusElements = document.querySelectorAll('.status-online, .status-offline');
+        setInterval(() => {
+            statusElements.forEach(el => {
+                if (el.classList.contains('status-online')) {
+                    el.style.opacity = el.style.opacity === '0.7' ? '1' : '0.7';
+                }
+            });
+        }, 800);
+        
+        // Анимация для элементов сетки
+        const gridItems = document.querySelectorAll('.fsociety-item');
+        gridItems.forEach((item, index) => {
+            item.style.opacity = '0';
+            item.style.transform = 'translateY(20px)';
+            
+            setTimeout(() => {
+                item.style.transition = 'opacity 0.5s, transform 0.5s';
+                item.style.opacity = '1';
+                item.style.transform = 'translateY(0)';
+            }, 300 + index * 100);
+        });
+        
+        // Эффект печати для консоли
+        const consoleLines = document.querySelectorAll('.console-line');
+        consoleLines.forEach((line, index) => {
+            const originalText = line.innerHTML;
+            line.innerHTML = '';
+            
+            setTimeout(() => {
+                let i = 0;
+                function typeWriter() {
+                    if (i < originalText.length) {
+                        line.innerHTML += originalText.charAt(i);
+                        i++;
+                        setTimeout(typeWriter, 20);
+                    }
+                }
+                typeWriter();
+            }, 500 + index * 800);
+        });
+    </script>
+</body>
+</html>
